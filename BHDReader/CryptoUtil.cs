@@ -5,11 +5,11 @@ using Org.BouncyCastle.OpenSsl;
 namespace BHDReader;
 
 /// <summary>
-///     These RSA functions are copy-pasted straight from BinderTool. Thank you Atvaark!
+/// These RSA functions are copy-pasted straight from BinderTool and modified slightly for this library. Thank you Atvaark!
 /// </summary>
-static class CryptoUtil {
+internal static class CryptoUtil {
     /// <summary>
-    ///     Decrypts a file with a provided decryption key.
+    /// Decrypts a file with a provided decryption key.
     /// </summary>
     /// <param name="file">An encrypted file</param>
     /// <param name="key">The RSA key in PEM format</param>

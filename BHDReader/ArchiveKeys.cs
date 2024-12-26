@@ -1,6 +1,9 @@
 namespace BHDReader;
 
 static class ArchiveKeys {
+    //@TODO: Get the DS2 keys
+    public static Dictionary<string, string> DarkSouls2Keys = new();
+    public static Dictionary<string, string> DarkSouls2ScholarKeys = new();
     public static Dictionary<string, string> DarkSouls3Keys = new() {
         ["Data1"] =
             @"-----BEGIN RSA PUBLIC KEY-----

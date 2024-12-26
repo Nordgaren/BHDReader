@@ -1,7 +1,10 @@
 using BHDReader.BHD5Utils;
 
 namespace BHDReader;
-
+/// <summary>
+/// An ArchiveReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
+/// You can also search in a specific archive, by name, just as well.
+/// </summary>
 public class ArchiveReader {
     private BHDGame _game { get; }
     private List<BHDReader> _bhdReaders { get; }
@@ -18,7 +21,7 @@ public class ArchiveReader {
         _bhdReaders = new List<BHDReader>();
         string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ?? throw new DirectoryNotFoundException("Could not find the steam path to the game.");
 
-        foreach (string archive in BHDNames.GetBHDPaths(game)) {
+        foreach (string archive in _game.ArchiveNames()) {
             _bhdReaders.Add(new BHD5Reader(
                 $"{steamPath}/Game/{archive}",
                 _game.ToBHD5Game(),
