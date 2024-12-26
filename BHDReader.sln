@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHDReader", "BHDReader\BHDReader.csproj", "{5E1F0DED-2C52-4658-838B-108A29C83213}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoulsFormats", "dependencies\SoulsFormatsNEXT\SoulsFormats\SoulsFormats.csproj", "{5FBD71A3-4519-4CA7-8916-77DFF9F66833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHDReader.CLI", "BHDReader.CLI\BHDReader.CLI.csproj", "{9E7140FA-F03D-44C5-BBD5-BBA1D80A176E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E1F0DED-2C52-4658-838B-108A29C83213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1F0DED-2C52-4658-838B-108A29C83213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1F0DED-2C52-4658-838B-108A29C83213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1F0DED-2C52-4658-838B-108A29C83213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FBD71A3-4519-4CA7-8916-77DFF9F66833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FBD71A3-4519-4CA7-8916-77DFF9F66833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FBD71A3-4519-4CA7-8916-77DFF9F66833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FBD71A3-4519-4CA7-8916-77DFF9F66833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E7140FA-F03D-44C5-BBD5-BBA1D80A176E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E7140FA-F03D-44C5-BBD5-BBA1D80A176E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E7140FA-F03D-44C5-BBD5-BBA1D80A176E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E7140FA-F03D-44C5-BBD5-BBA1D80A176E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

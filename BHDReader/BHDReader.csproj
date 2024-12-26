@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>BHDReader</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\dependencies\SoulsFormatsNEXT\SoulsFormats\SoulsFormats.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SteamPath" Version="1.2.1" />
+    </ItemGroup>
+
+</Project>
