@@ -1,9 +1,42 @@
 namespace BHDReader;
 
 static class ArchiveKeys {
-    //@TODO: Get the DS2 keys
-    public static Dictionary<string, string> DarkSouls2Keys = new();
-    public static Dictionary<string, string> DarkSouls2ScholarKeys = new();
+    public static Dictionary<string, string>? DarkSouls2Keys;
+    public static void GetDarkSouls2Keys() {
+        if (DarkSouls2Keys != null) {
+            return;
+        }
+
+        BHDGame game = BHDGame.DarkSouls2;
+        string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ??
+                           throw new DirectoryNotFoundException(
+                               "DarkSouls 2 Directory not found. Game must be installed to decrypt BHD.");
+        
+        DarkSouls2Keys = new();
+        foreach (string archive in game.ArchiveNames()) {
+            string pemPath = $@"{steamPath}\Game\{archive.Replace("Ebl", "KeyCode")}.pem";
+            DarkSouls2Keys[archive] = File.ReadAllText(pemPath);
+        }
+    }
+
+    public static Dictionary<string, string>? DarkSouls2ScholarKeys;
+    public static void GetDarkSouls2ScholarKeys() {
+        if (DarkSouls2ScholarKeys != null) {
+            return;
+        }
+
+        BHDGame game = BHDGame.DarkSouls2Scholar;
+        string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ??
+                           throw new DirectoryNotFoundException(
+                               "DarkSouls 2 Directory not found. Game must be installed to decrypt BHD.");
+        
+        DarkSouls2ScholarKeys = new();
+        foreach (string archive in game.ArchiveNames()) {
+            string pemPath = $@"{steamPath}\Game\{archive.Replace("Ebl", "KeyCode")}.pem";
+            DarkSouls2ScholarKeys[archive] = File.ReadAllText(pemPath);
+        }
+    }
+
     public static Dictionary<string, string> DarkSouls3Keys = new() {
         ["Data1"] =
             @"-----BEGIN RSA PUBLIC KEY-----

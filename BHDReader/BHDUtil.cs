@@ -36,9 +36,11 @@ public static class BHDUtil {
             case BHDGame.DarkSouls1Remasterd:
                 return null;
             case BHDGame.DarkSouls2:
+                ArchiveKeys.GetDarkSouls2Keys();
+                return ArchiveKeys.DarkSouls2Keys![archiveName];
             case BHDGame.DarkSouls2Scholar:
-                throw new ArgumentOutOfRangeException(nameof(game), game, "I forgor the RSA keys for DS2 :(");
-                return ArchiveKeys.DarkSouls2Keys[archiveName];
+                ArchiveKeys.GetDarkSouls2ScholarKeys();
+                return ArchiveKeys.DarkSouls2ScholarKeys![archiveName];
             case BHDGame.DarkSouls3:
                 return ArchiveKeys.DarkSouls3Keys[archiveName];
             case BHDGame.Sekiro:
@@ -86,8 +88,7 @@ public static class BHDUtil {
     /// </summary>
     /// <param name="game">Game to look up</param>
     /// <returns>string with the AppId number of the game</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Throws if you are trying to unpack Sekiro Bonus right now, because
-    /// I don't know what to look up for the app id. Maybe it's just the base sekiro one?</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Should be unreachable</exception>
     public static string GetAppId(this BHDGame game) {
         switch (game) {
             case BHDGame.DarkSouls1:
@@ -103,8 +104,7 @@ public static class BHDUtil {
             case BHDGame.Sekiro:
                 return "814380";
             case BHDGame.SekiroBonus:
-                throw new ArgumentOutOfRangeException(nameof(game), game, "Sekiro Bonus is not supported. Please contact Nordgaren for support.");
-                 return "814380";
+                return "1039230";
             case BHDGame.EldenRing:
                 return "1245620";
             case BHDGame.ArmoredCore6:

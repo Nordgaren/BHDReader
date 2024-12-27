@@ -12,7 +12,7 @@ public enum BHDGame {
     DarkSouls1,
     
     /// <summary>
-    /// Dark Souls 1, both PC and console versions.
+    /// Dark Souls 1 Remastered, added to tell the user the game is already unpacked.
     /// </summary>
     DarkSouls1Remasterd,
 

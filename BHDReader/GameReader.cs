@@ -8,6 +8,7 @@ namespace BHDReader;
 public class GameReader {
     private BHDGame _game { get; }
     private List<BHDReader> _bhdReaders { get; }
+    private string _gamePath { get; }
 
     /// <summary>
     /// A GameReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
@@ -20,15 +21,22 @@ public class GameReader {
         _game = game;
         _bhdReaders = new List<BHDReader>();
         string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ?? throw new DirectoryNotFoundException("Could not find the steam path to the game.");
-
+        _gamePath = $"{steamPath}/Game/";
         foreach (string archive in _game.ArchiveNames()) {
             _bhdReaders.Add(new BHD5Reader(
-                $"{steamPath}/Game/{archive}",
+                $"{_gamePath}/{archive}",
                 _game.ToBHD5Game(),
                 _game.GetArchiveKey(archive),
                 cachePath
             ));
         }
+    }
+    /// <summary>
+    /// Returns the path to the folder where the games exe is.
+    /// </summary>
+    /// <returns>String path to the game folder</returns>
+    public string GetGameFolderPath() {
+        return _gamePath;
     }
     /// <summary>
     /// Gets the file you are looking for, by path. Must provide the full path of the file in the games file system.
