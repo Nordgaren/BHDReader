@@ -73,6 +73,10 @@ internal class BHD5Data {
             using MemoryStream ms = CryptoUtil.DecryptRsa(bytes,
                 key ?? throw new ArgumentNullException(nameof(key),
                     "Key cannot be null when archive headers are encrypted."));
+            if (cachePath != null) {
+                File.WriteAllBytes(cachedBHD, ms.ToArray());
+            }
+            
             return Read(ms, game);
         }
 

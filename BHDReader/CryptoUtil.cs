@@ -18,14 +18,6 @@ internal static class CryptoUtil {
     /// <exception cref="ArgumentNullException">When the argument keyPath is null</exception>
     /// <returns>A memory stream with the decrypted file</returns>
     public static MemoryStream DecryptRsa(byte[] file, string key, CancellationToken? token = null) {
-        if (file == null) {
-            throw new ArgumentNullException(nameof(file));
-        }
-
-        if (key == null) {
-            throw new ArgumentNullException(nameof(key));
-        }
-
         AsymmetricKeyParameter keyParameter = getKeyOrDefault(key) ?? throw new InvalidOperationException();
         RsaEngine engine = new();
         engine.Init(false, keyParameter);
