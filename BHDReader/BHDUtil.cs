@@ -56,7 +56,7 @@ public static class BHDUtil {
         }
     }
     
-        /// <summary>
+    /// <summary>
     /// Converts BHDGame to the corresponding BHD5.Game, for use with BHD5s
     /// </summary>
     /// <param name="game">BHDGame to convert</param>

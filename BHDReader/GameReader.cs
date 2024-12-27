@@ -8,6 +8,9 @@ namespace BHDReader;
 public class GameReader {
     private BHDGame _game { get; }
     private List<BHDReader> _bhdReaders { get; }
+    /// <summary>
+    /// Path to the folder that has the game exe
+    /// </summary>
     private string _gamePath { get; }
 
     /// <summary>
@@ -15,13 +18,15 @@ public class GameReader {
     /// You can also search in a specific archive, by name, just as well.
     /// </summary>
     /// <param name="game">The game you want to unpack from</param>
+    /// <param name="gamePath">Path to the game exe or the folder that contains the game exe</param>
     /// <param name="cachePath">A path to cache the decrypted BHD5 header, so you don't have to do it over and over</param>
-    /// <exception cref="FileNotFoundException">Throws a FileNotFoundException if the Steam path to the game you are for, is not found</exception>
-    public GameReader(BHDGame game, string? cachePath = null) {
+    /// <exception cref="DirectoryNotFoundException">Throws a DirectoryNotFoundException if the Steam path to the game you are for, is not found</exception>
+    public GameReader(BHDGame game, string? gamePath = null, string? cachePath = null) {
         _game = game;
         _bhdReaders = new List<BHDReader>();
-        string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ?? throw new DirectoryNotFoundException("Could not find the steam path to the game.");
-        _gamePath = $"{steamPath}/Game/";
+
+        _gamePath = getGamePathFromArgs(game, gamePath);
+        
         foreach (string archive in _game.ArchiveNames()) {
             _bhdReaders.Add(new BHD5Reader(
                 $"{_gamePath}/{archive}",
@@ -31,6 +36,22 @@ public class GameReader {
             ));
         }
     }
+    /// <summary>
+    /// Private method to sort out the args passed to the constructor
+    /// </summary>
+    /// <param name="game">The game to search for</param>
+    /// <param name="gamePath">Constructor arg that is optional</param>
+    /// <returns>String path to the folder that contains the game exe</returns>
+    /// <exception cref="DirectoryNotFoundException">Throws a DirectoryNotFoundException if the Steam path to the game you are for, is not found</exception>
+    static string getGamePathFromArgs(BHDGame game, string? gamePath) {
+        if (gamePath == null) {
+            string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ?? throw new DirectoryNotFoundException($"Could not find the steam path to the game {game}.");
+            return $"{steamPath}/Game/";
+        }
+      
+        return File.Exists(gamePath) ? Path.GetDirectoryName(gamePath)! : gamePath;
+    }
+    
     /// <summary>
     /// Returns the path to the folder where the games exe is.
     /// </summary>
