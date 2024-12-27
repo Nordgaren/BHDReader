@@ -2,5 +2,5 @@
 
 using BHDReader;
 
-new ArchiveReader(BHDGame.EldenRing);
+new GameReader(BHDGame.EldenRing);
 Console.WriteLine("Hello, World!");

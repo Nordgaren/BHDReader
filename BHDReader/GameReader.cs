@@ -2,21 +2,21 @@ using BHDReader.BHD5Utils;
 
 namespace BHDReader;
 /// <summary>
-/// An ArchiveReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
+/// A GameReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
 /// You can also search in a specific archive, by name, just as well.
 /// </summary>
-public class ArchiveReader {
+public class GameReader {
     private BHDGame _game { get; }
     private List<BHDReader> _bhdReaders { get; }
 
     /// <summary>
-    /// An ArchiveReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
+    /// A GameReader that reads all the archives for the game, and will enumerate all of them to find the files you need.
     /// You can also search in a specific archive, by name, just as well.
     /// </summary>
     /// <param name="game">The game you want to unpack from</param>
     /// <param name="cachePath">A path to cache the decrypted BHD5 header, so you don't have to do it over and over</param>
     /// <exception cref="FileNotFoundException">Throws a FileNotFoundException if the Steam path to the game you are for, is not found</exception>
-    public ArchiveReader(BHDGame game, string? cachePath = null) {
+    public GameReader(BHDGame game, string? cachePath = null) {
         _game = game;
         _bhdReaders = new List<BHDReader>();
         string steamPath = SteamPath.SteamPath.Find(game.GetAppId()) ?? throw new DirectoryNotFoundException("Could not find the steam path to the game.");
