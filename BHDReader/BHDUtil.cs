@@ -66,7 +66,7 @@ public static class BHDUtil {
         switch (game) {
             case BHDGame.DarkSouls1:
                 throw new ArgumentOutOfRangeException(nameof(game), game, "DS1 is not supported, yet.");
-                 return BHD5.Game.DarkSouls1;
+                 // return BHD5.Game.DarkSouls1;
             case BHDGame.DarkSouls1Remasterd:
                 throw new ArgumentOutOfRangeException(nameof(game), game, "You are trying to unpack an unpacked game...");
             case BHDGame.DarkSouls2:

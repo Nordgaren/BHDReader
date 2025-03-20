@@ -1,4 +1,3 @@
-using System.Text;
 using SoulsFormats;
 
 namespace BHDReader.BHD5Utils;
@@ -18,7 +17,7 @@ public class BHD5Reader : BHDReader   {
     /// <param name="path">Path to the bhd, bdt, or just the name of the archive header/data blob file</param>
     /// <param name="game">Game the archives are for</param>
     /// <param name="key">RSA key, if necessary, to decrypt the archive</param>
-    /// <param name="cachePath">A path to check for and store decrypted archive headers, for caching</param>
+    /// <param name="cachePath">Path to cached version of the BHD5. Leave null if no cache is to be used.</param>
     /// <exception cref="FileNotFoundException"></exception>
     public BHD5Reader(string path, BHD5.Game game, string? key = null, string? cachePath = null) {
         // ChangeExtension will only change the string if there is an extension.
@@ -28,8 +27,7 @@ public class BHD5Reader : BHDReader   {
         }
         _archiveName = Path.GetFileName(filePath);
         _game = game;
-        string? cache = cachePath != null ? $"{cachePath}/{_archiveName}" : null;
-        _BHDinfo = BHD5Data.MakeBHD5Data(filePath, _game, key, cache);
+        _BHDinfo = BHD5Data.MakeBHD5Data(filePath, _game, key, cachePath);
     }
     /// <summary>
     /// Get the archive name

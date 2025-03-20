@@ -43,7 +43,7 @@ internal class BHD5Data {
     /// <param name="path">Path to the BHD5 archive</param>
     /// <param name="game">Game associated with the BHD5 archive</param>
     /// <param name="key">RSA Key for decrypting encrypted archives, if applicable...</param>
-    /// <param name="cachePath">A path for caching decrypted BHD5 headers</param>
+    /// <param name="cachePath">Path to cached version of the BHD5. Leave null if no cache is to be used.</param>
     /// <returns>BHD5Data which will read the headers and open file streams when/where appropriate, instead of immediately.</returns>
     public static BHD5Data MakeBHD5Data(string path, Game game, string? key = null, string? cachePath = null) {
         return new BHD5Data(
@@ -58,10 +58,12 @@ internal class BHD5Data {
     /// <param name="path">Path to the BHD5 archive</param>
     /// <param name="game">Game associated with the BHD5 archive</param>
     /// <param name="key">RSA Key for decrypting encrypted archives, if applicable...</param>
-    /// <param name="cachePath">A path for caching decrypted BHD5 headers</param>
+    /// <param name="cachePath">Path to cached version of the BHD5. Leave null if no cache is to be used.</param>
     /// <returns>BHD5 object from SoulsFormatsNEXT</returns>
     /// <exception cref="ArgumentNullException">Will throw if the key is null and the archive headers are encrypted</exception>
     private static BHD5 readHeaders(string path, Game game, string? key = null, string? cachePath = null) {
+        // We will need this path multiple times if cachePath is not null, so concatenate the path and the extension, and 
+        // check if `cachePath != null
         string cachedBHD = $"{cachePath}.bhd";
         if (cachePath != null && File.Exists(cachedBHD)) {
             using MemoryStream cached = new(File.ReadAllBytes(cachedBHD));
